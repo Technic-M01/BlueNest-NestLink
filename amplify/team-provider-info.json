@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nestlink-dev-215729-authRole",
+      "UnauthRoleArn": "arn:aws:iam::240192446583:role/amplify-nestlink-dev-215729-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::240192446583:role/amplify-nestlink-dev-215729-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-nestlink-dev-215729-deployment",
+      "UnauthRoleName": "amplify-nestlink-dev-215729-unauthRole",
+      "StackName": "amplify-nestlink-dev-215729",
+      "StackId": "arn:aws:cloudformation:us-east-2:240192446583:stack/amplify-nestlink-dev-215729/edf2fae0-8758-11ee-b16e-0a7fa02ec393",
+      "AmplifyAppId": "duzybnfh4c8gs"
+    },
+    "categories": {
+      "auth": {
+        "nestlinkba15b325": {}
+      },
+      "api": {
+        "nestlink": {}
+      }
+    }
+  }
+}

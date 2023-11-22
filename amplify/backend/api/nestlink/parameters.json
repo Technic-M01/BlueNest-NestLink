@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "nestlink",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authnestlinkba15b325",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
