@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.bytebloomlabs.nestlink.AuthFragment"
+        android:name="com.bytebloomlabs.nestlink.fragments.AuthFragment"
         android:label="@string/auth_frag_label"
         tools:layout="@layout/fragment_auth">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/dataListFragment"
-        android:name="com.bytebloomlabs.nestlink.DataListFragment"
+        android:name="com.bytebloomlabs.nestlink.fragments.DataListFragment"
         android:label="@string/data_list_frag_label"
         tools:layout="@layout/fragment_data_list" >
         <action
@@ -25,6 +25,6 @@
     </fragment>
     <fragment
         android:id="@+id/addDataPointFragment"
-        android:name="com.bytebloomlabs.nestlink.AddDataPointFragment"
+        android:name="com.bytebloomlabs.nestlink.fragments.AddDataPointFragment"
         android:label="@string/add_data_point_frag_label" />
 </navigation>

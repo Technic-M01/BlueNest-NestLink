@@ -3,16 +3,12 @@ package com.bytebloomlabs.nestlink.fragments
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import com.bytebloomlabs.nestlink.AuthFragment
 import com.bytebloomlabs.nestlink.Backend
-import com.bytebloomlabs.nestlink.R
 import com.bytebloomlabs.nestlink.databinding.FragmentAuthDialogBinding
 
 class AuthDialogFragment : DialogFragment() {

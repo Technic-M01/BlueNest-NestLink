@@ -12,6 +12,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bytebloomlabs.nestlink.databinding.ActivityMainBinding
 import com.bytebloomlabs.nestlink.fragments.AuthDialogFragment
+import com.bytebloomlabs.nestlink.fragments.AuthFragmentDirections
+import com.bytebloomlabs.nestlink.fragments.DataListFragmentDirections
 import com.bytebloomlabs.nestlink.utils.showCustomToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 

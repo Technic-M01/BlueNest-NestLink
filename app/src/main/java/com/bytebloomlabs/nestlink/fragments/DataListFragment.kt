@@ -1,4 +1,4 @@
-package com.bytebloomlabs.nestlink
+package com.bytebloomlabs.nestlink.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.bytebloomlabs.nestlink.Backend
+import com.bytebloomlabs.nestlink.EggDataRecyclerViewAdapter
+import com.bytebloomlabs.nestlink.R
+import com.bytebloomlabs.nestlink.UserData
 import com.bytebloomlabs.nestlink.databinding.FragmentDataListBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -67,7 +71,8 @@ class DataListFragment : Fragment() {
     //rv is the list of cells
     private fun setupRecyclerView(recyclerView: RecyclerView) {
         // update individual cells when the EggData contents are modified
-        UserData.eggDataPoints().observe(viewLifecycleOwner, Observer<MutableList<UserData.EggDataPoints>> { dataPoints ->
+        UserData.eggDataPoints()
+            .observe(viewLifecycleOwner, Observer<MutableList<UserData.EggDataPoints>> { dataPoints ->
             Log.d(TAG, "setupRecyclerView: EggData observer received ${dataPoints.size} data points")
 
             //create a recycler view adapter that manages the individual cells
@@ -79,7 +84,7 @@ class DataListFragment : Fragment() {
         binding.fabAuth.setOnClickListener {
             val authButton = it as FloatingActionButton
 
-            if (userData.isSignedIn.value!!) {
+            if (UserData.isSignedIn.value!!) {
                 authButton.setImageResource(R.drawable.ic_lock_open)
                 Backend.signOut()
             } else {

@@ -1,4 +1,4 @@
-package com.bytebloomlabs.nestlink
+package com.bytebloomlabs.nestlink.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -6,11 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
+import com.bytebloomlabs.nestlink.Backend
+import com.bytebloomlabs.nestlink.SessionViewModel
+import com.bytebloomlabs.nestlink.UserData
 import com.bytebloomlabs.nestlink.databinding.FragmentAuthBinding
 import com.bytebloomlabs.nestlink.utils.showSignupDialog
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class AuthFragment : Fragment() {
 
@@ -49,9 +50,9 @@ class AuthFragment : Fragment() {
     private fun setupButtons(userData: UserData) {
 
         binding.btnSignIn.setOnClickListener {
-            Log.i(TAG, "sign in btn click. signed in value: ${userData.isSignedIn.value}")
+            Log.i(TAG, "sign in btn click. signed in value: ${UserData.isSignedIn.value}")
 
-            if (userData.isSignedIn.value!!) {
+            if (UserData.isSignedIn.value!!) {
                 Backend.signOut()
 
             } else {
