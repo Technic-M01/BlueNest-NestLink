@@ -9,4 +9,9 @@
     <string name="data_list_frag_label">FragmentDataList</string>
     <string name="add_data_point_frag_label">FragmentAddDataPoint</string>
 
+
+    <!-- Egg Types -->
+    <string name="egg_type_temp">Temperature Egg</string>
+    <string name="egg_type_weather">Weather Egg</string>
+
 </resources>
