@@ -1,21 +1,16 @@
-package com.bytebloomlabs.nestlink
+package com.bytebloomlabs.nestlink.models
 
 import android.app.Activity
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.api.aws.AWSApiPlugin
 import com.amplifyframework.api.graphql.model.ModelMutation
 import com.amplifyframework.api.graphql.model.ModelQuery
 import com.amplifyframework.auth.AuthChannelEventName
-import com.amplifyframework.auth.AuthException
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
-import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.auth.options.AuthSignUpOptions
-import com.amplifyframework.auth.result.AuthSessionResult
-import com.amplifyframework.auth.result.AuthSignInResult
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.core.InitializationStatus
 import com.amplifyframework.datastore.generated.model.EggData
@@ -70,7 +65,7 @@ object Backend {
         Amplify.Auth.fetchAuthSession(
             { result ->
                 Log.i(TAG, "initialize: $result")
-                this.updateUserData(result.isSignedIn)
+                updateUserData(result.isSignedIn)
             },
             {
                 Log.i(TAG, "initialize: failure")
@@ -105,7 +100,7 @@ object Backend {
 
         // query data points when signed in and we do not have data points yet
         if (withSignedInStatus && isEmpty) {
-            this.queryEggData()
+            queryEggData()
         } else {
             UserData.resetEggData()
         }

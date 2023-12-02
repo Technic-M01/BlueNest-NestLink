@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
-import com.bytebloomlabs.nestlink.Backend
+import com.bytebloomlabs.nestlink.models.Backend
 import com.bytebloomlabs.nestlink.databinding.FragmentAuthDialogBinding
 
 class AuthDialogFragment : DialogFragment() {

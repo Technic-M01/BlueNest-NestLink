@@ -1,4 +1,4 @@
-package com.bytebloomlabs.nestlink
+package com.bytebloomlabs.nestlink.models
 
 import android.graphics.Bitmap
 import android.util.Log
@@ -33,7 +33,7 @@ object UserData {
         this.postValue(this.value)
     }
     fun notifyObserver() {
-        this._eggDataPoints.notifyObserver()
+        _eggDataPoints.notifyObserver()
     }
     fun eggDataPoints() : LiveData<MutableList<EggDataPoints>> = _eggDataPoints
 
@@ -56,7 +56,7 @@ object UserData {
     }
 
     fun resetEggData() {
-        this._eggDataPoints.value?.clear()
+        _eggDataPoints.value?.clear()
         _eggDataPoints.notifyObserver()
     }
 

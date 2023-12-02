@@ -1,4 +1,4 @@
-package com.bytebloomlabs.nestlink
+package com.bytebloomlabs.nestlink.models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

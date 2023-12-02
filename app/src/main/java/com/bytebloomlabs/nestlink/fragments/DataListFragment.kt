@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import com.bytebloomlabs.nestlink.Backend
-import com.bytebloomlabs.nestlink.EggDataRecyclerViewAdapter
+import com.bytebloomlabs.nestlink.models.Backend
+import com.bytebloomlabs.nestlink.adapters.EggDataRecyclerViewAdapter
 import com.bytebloomlabs.nestlink.R
-import com.bytebloomlabs.nestlink.UserData
+import com.bytebloomlabs.nestlink.models.UserData
 import com.bytebloomlabs.nestlink.databinding.FragmentDataListBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 

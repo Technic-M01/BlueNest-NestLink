@@ -1,4 +1,4 @@
-package com.bytebloomlabs.nestlink
+package com.bytebloomlabs.nestlink.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bytebloomlabs.nestlink.R
+import com.bytebloomlabs.nestlink.models.UserData
 
 class EggDataRecyclerViewAdapter(
     private val values: MutableList<UserData.EggDataPoints>?): RecyclerView.Adapter<EggDataRecyclerViewAdapter.ViewHolder>() {

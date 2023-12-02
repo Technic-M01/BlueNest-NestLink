@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.bytebloomlabs.nestlink.Backend
-import com.bytebloomlabs.nestlink.UserData
+import com.bytebloomlabs.nestlink.models.Backend
+import com.bytebloomlabs.nestlink.models.UserData
 import com.bytebloomlabs.nestlink.databinding.FragmentAddDataPointBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

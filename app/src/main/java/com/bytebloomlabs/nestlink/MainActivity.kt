@@ -10,10 +10,14 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bytebloomlabs.nestlink.adapters.EggDataRecyclerViewAdapter
 import com.bytebloomlabs.nestlink.databinding.ActivityMainBinding
 import com.bytebloomlabs.nestlink.fragments.AuthDialogFragment
 import com.bytebloomlabs.nestlink.fragments.AuthFragmentDirections
 import com.bytebloomlabs.nestlink.fragments.DataListFragmentDirections
+import com.bytebloomlabs.nestlink.models.Backend
+import com.bytebloomlabs.nestlink.models.SessionViewModel
+import com.bytebloomlabs.nestlink.models.UserData
 import com.bytebloomlabs.nestlink.utils.showCustomToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -87,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        UserData.isSignedIn.observe(this, Observer<Boolean> {isSignedUp ->
+        UserData.isSignedIn.observe(this, Observer<Boolean> { isSignedUp ->
             // update UI
             Log.i(TAG, "onCreate: isSignedIn changed. isSignedUp: $isSignedUp")
 

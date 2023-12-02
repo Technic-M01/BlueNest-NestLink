@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.bytebloomlabs.nestlink.Backend
-import com.bytebloomlabs.nestlink.SessionViewModel
-import com.bytebloomlabs.nestlink.UserData
+import com.bytebloomlabs.nestlink.models.Backend
+import com.bytebloomlabs.nestlink.models.SessionViewModel
+import com.bytebloomlabs.nestlink.models.UserData
 import com.bytebloomlabs.nestlink.databinding.FragmentAuthBinding
 import com.bytebloomlabs.nestlink.utils.showSignupDialog
 
