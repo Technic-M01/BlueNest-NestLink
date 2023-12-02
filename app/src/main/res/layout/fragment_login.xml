@@ -12,7 +12,7 @@
         android:id="@+id/tv_title_login_frag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nest Link Login"
+        android:text="@string/nest_link_login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,7 +31,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="username" />
+            android:hint="@string/hint_username" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -47,7 +47,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="email" />
+            android:hint="@string/hint_email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -63,25 +63,11 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="password" />
+            android:hint="@string/hint_password" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ti_confirmation_code"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/page_margin"
-        app:layout_constraintTop_toBottomOf="@+id/ti_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="confirmation code" />
-    </com.google.android.material.textfield.TextInputLayout>
-
+    <!--TODO: move buttons to bottom of page -->
 
     <Button
         android:id="@+id/btn_sign_in"
@@ -90,8 +76,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginVertical="@dimen/page_margin"
-        android:text="sign in"
-        app:layout_constraintTop_toBottomOf="@+id/ti_confirmation_code"
+        android:text="@string/sign_in"
+        app:layout_constraintTop_toBottomOf="@+id/ti_password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
@@ -103,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/page_margin"
         android:layout_marginHorizontal="40dp"
-        android:text="sign up"
+        android:text="@string/sign_up"
         app:layout_constraintTop_toBottomOf="@+id/btn_sign_in"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

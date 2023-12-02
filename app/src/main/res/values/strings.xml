@@ -14,4 +14,27 @@
     <string name="egg_type_temp">Temperature Egg</string>
     <string name="egg_type_weather">Weather Egg</string>
 
+
+    <!-- content egg data -->
+    <string name="egg_type">Egg Type</string>
+    <string name="telemetry_timestamp">Telemetry Timestamp</string>
+    <string name="telemetry">Telemetry</string>
+    <string name="id">ID</string>
+
+    <!-- Titles -->
+    <string name="nest_link_login">Nest Link Login</string>
+
+    <!-- Text Input Hints -->
+    <string name="hint_password">password</string>
+    <string name="hint_username">username</string>
+    <string name="hint_email">email</string>
+    <string name="hint_confirmation_code">confirmation code</string>
+
+    <!-- Buttons -->
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+
 </resources>

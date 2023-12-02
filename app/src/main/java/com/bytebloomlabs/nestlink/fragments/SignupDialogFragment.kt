@@ -9,11 +9,11 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.bytebloomlabs.nestlink.models.Backend
-import com.bytebloomlabs.nestlink.databinding.FragmentAuthDialogBinding
+import com.bytebloomlabs.nestlink.databinding.FragmentSignupDialogBinding
 
 class SignupDialogFragment : DialogFragment() {
 
-    private var _binding: FragmentAuthDialogBinding? = null
+    private var _binding: FragmentSignupDialogBinding? = null
     val binding get() = _binding!!
 
     override fun onCreateView(
@@ -21,7 +21,7 @@ class SignupDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentAuthDialogBinding.inflate(inflater, container, false)
+        _binding = FragmentSignupDialogBinding.inflate(inflater, container, false)
         return binding.root
 //        return inflater.inflate(R.layout.fragment_auth_dialog, container, false)
     }
