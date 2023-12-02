@@ -9,14 +9,6 @@ import com.bytebloomlabs.nestlink.utils.ToastIcons
 import com.bytebloomlabs.nestlink.utils.ToastSeverity
 
 class SessionViewModel: ViewModel() {
-
-    private val _triggerAuth = MutableLiveData<Boolean>().apply { value = false }
-    val triggerAuth: LiveData<Boolean> get() = _triggerAuth
-
-    fun setTriggerAuth(trigger: Boolean) {
-        _triggerAuth.value = trigger
-    }
-
     /* live data for showing custom toast messages */
     private val _message = MutableLiveData<Event<ToastEvent>>()
     val message: LiveData<Event<ToastEvent>> get() = _message

@@ -150,8 +150,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private var doOnce = false
-
     private fun changeFragments(destination: NavDestinations) {
 
         val action = when (destination) {
@@ -166,18 +164,6 @@ class MainActivity : AppCompatActivity() {
         val owner = this@MainActivity
 
         with (sessionViewModel) {
-            triggerAuth.observe(owner) { run ->
-                if (run) {
-                    //ToDo auth stuff
-
-                    val action = AuthFragmentDirections.actionAuthFragmentToDataListFragment3()
-
-                    if (!doOnce) {
-//                        navController.navigate(action)
-                        doOnce = true
-                    }
-                }
-            }
 
             message.observe(owner) { event ->
                 event.getContentIfNotHandled()?.let {

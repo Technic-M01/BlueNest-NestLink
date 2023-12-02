@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.AuthDialogFragment"
     android:background="@color/white"
-    android:layout_margin="@dimen/page_margin"
+    android:padding="@dimen/page_margin"
+    android:clickable="true"
     >
 
     <TextView

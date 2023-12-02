@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import com.bytebloomlabs.nestlink.databinding.FragmentAuthBinding
+import com.bytebloomlabs.nestlink.utils.showSignupDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class AuthFragment : Fragment() {
@@ -36,7 +37,7 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupAuthButton(UserData)
+        setupButtons(UserData)
     }
 
     override fun onDestroy() {
@@ -45,7 +46,7 @@ class AuthFragment : Fragment() {
     }
 
 
-    private fun setupAuthButton(userData: UserData) {
+    private fun setupButtons(userData: UserData) {
 
         binding.btnSignIn.setOnClickListener {
             Log.i(TAG, "sign in btn click. signed in value: ${userData.isSignedIn.value}")
@@ -54,32 +55,14 @@ class AuthFragment : Fragment() {
                 Backend.signOut()
 
             } else {
-//                Backend.signIn(requireActivity())
-
                 val username = binding.tiUsername.editText?.text.toString()
                 val userpassword = binding.tiPassword.editText?.text.toString()
                 Backend.signIn(username, userpassword, requireActivity())
             }
-
-//            sessionViewModel.setTriggerAuth(true)
-
         }
 
         binding.btnSignUp.setOnClickListener {
-            val username = binding.tiUsername.editText?.text.toString()
-            val useremail = binding.tiEmail.editText?.text.toString()
-            val userpassword = binding.tiPassword.editText?.text.toString()
-
-            Log.i(TAG, "sign up\n\tuser name: <$username>\n\temail: <$useremail>\n\tpassword: <$userpassword>")
-
-            Backend.signUp(username, useremail, userpassword)
-        }
-
-        binding.btnConfirmSignUp.setOnClickListener {
-            val username = binding.tiUsername.editText?.text.toString()
-            val confirmationcode = binding.tiConfirmationCode.editText?.text.toString()
-
-            Backend.confirmSignUp(username, confirmationcode)
+            requireActivity().showSignupDialog()
         }
 
     }

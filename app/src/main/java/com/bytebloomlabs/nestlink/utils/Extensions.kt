@@ -8,7 +8,25 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import com.bytebloomlabs.nestlink.MainActivity
 import com.bytebloomlabs.nestlink.R
+import com.bytebloomlabs.nestlink.fragments.AuthDialogFragment
+
+internal fun Activity.showSignupDialog() {
+    val fragmentManager = (this as MainActivity).supportFragmentManager
+    val newFragment = AuthDialogFragment()
+
+    val transaction = fragmentManager.beginTransaction()
+    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+
+    transaction
+        .add(android.R.id.content, newFragment)
+        .addToBackStack(null)
+        .commit()
+}
+
+
 
 internal fun Activity.showCustomToast(
     message: String,
