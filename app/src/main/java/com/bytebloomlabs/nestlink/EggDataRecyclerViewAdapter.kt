@@ -18,9 +18,13 @@ class EggDataRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values?.get(position)
+
+        val telem = item?.telemetry?.toString(Charsets.UTF_8)
+
+
         holder.idView.text = item?.id
         //ToDo add logic for parsing telemetry
-//        holder.telemetryView.text = item?.telemetry
+        holder.telemetryView.text = telem
         holder.telemetryTimestampView.text = item?.telemetryTimestamp
         holder.eggTypeView.text = item?.eggType
     }

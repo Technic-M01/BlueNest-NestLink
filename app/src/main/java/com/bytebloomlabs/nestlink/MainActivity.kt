@@ -61,6 +61,13 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+            if (destination.label == getString(R.string.add_data_point_frag_label)) {
+                binding.fabAuth.visibility = View.INVISIBLE
+            } else {
+                binding.fabAuth.visibility = View.VISIBLE
+            }
+
+
             if (destination.label != getString(R.string.data_list_frag_label)) {
                 binding.fabAddDataPoint.visibility = View.INVISIBLE
             } else {
@@ -141,7 +148,6 @@ class MainActivity : AppCompatActivity() {
 
     private var doOnce = false
 
-    //TODO implement functionality for other fragments
     private fun changeFragments(destination: NavDestinations) {
 
         val action = when (destination) {
@@ -149,10 +155,7 @@ class MainActivity : AppCompatActivity() {
             NavDestinations.AddDataPoint -> DataListFragmentDirections.actionDataListFragmentToAddDataPointFragment()
         }
 
-//        val action = AuthFragmentDirections.actionAuthFragmentToDataListFragment3()
-
         navController.navigate(action)
-
     }
 
     private fun observeViewModel() {

@@ -7,5 +7,6 @@
     <!-- Fragment Labels -->
     <string name="auth_frag_label">FragmentAuth</string>
     <string name="data_list_frag_label">FragmentDataList</string>
+    <string name="add_data_point_frag_label">FragmentAddDataPoint</string>
 
 </resources>

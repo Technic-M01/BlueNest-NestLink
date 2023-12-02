@@ -116,17 +116,10 @@ object Backend {
         Log.i(TAG, "Initiate Signout Sequence")
 
         Amplify.Auth.signOut { Log.i(TAG, "signOut: signed out") }
-
     }
 
     fun signIn(userName: String, userPassword: String) {
         Log.i(TAG, "Initiate Signin Sequence")
-
-/*        Amplify.Auth.signInWithWebUI(
-            callingActivity,
-            { result: AuthSignInResult ->  Log.i(TAG, result.toString()) },
-            { error: AuthException -> Log.e(TAG, error.toString()) }
-        )*/
 
         Amplify.Auth.signIn(userName, userPassword,
             {
@@ -139,10 +132,6 @@ object Backend {
     }
 
     fun signUp(userName: String, userEmail: String, userPassword: String) {
-        val uname = "maui1"
-        val uemail = "mauriciohvvilla1@gmail.com"
-        val upass = "123456Ab!"
-
 
         val options = AuthSignUpOptions.builder()
             .userAttribute(AuthUserAttributeKey.email(), userEmail)
