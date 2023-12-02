@@ -4,16 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AuthFragment"
+    tools:context=".fragments.AuthDialogFragment"
+    android:background="@color/white"
     android:layout_margin="@dimen/page_margin"
     >
 
     <TextView
-        android:id="@+id/tv_title_login_frag"
+        android:id="@+id/tv_title_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nest Link Login"
+        android:text="Create Account"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        style="?attr/materialIconButtonOutlinedStyle"
+        android:id="@+id/btn_close_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_cancel"
+        app:iconTint="@color/cancel_red_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
@@ -25,7 +37,7 @@
         android:layout_marginVertical="@dimen/page_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_login_frag"
+        app:layout_constraintTop_toBottomOf="@+id/btn_close_signup"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -82,51 +94,38 @@
             android:hint="confirmation code" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <Button
-        android:id="@+id/btn_sign_in"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginVertical="@dimen/page_margin"
-        android:text="sign in"
         app:layout_constraintTop_toBottomOf="@+id/ti_confirmation_code"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <Button
-        android:id="@+id/btn_open_sign_up"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
         android:layout_marginVertical="@dimen/page_margin"
-        android:layout_marginHorizontal="40dp"
-        android:text="sign up"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sign_in"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        >
 
+        <Button
+            android:id="@+id/btn_confirm_sign_up"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="confirm sign up"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/ti_confirmation_code"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_weight="1"
+            />
 
-    <Button
-        android:id="@+id/btn_confirm_sign_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="confirm"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_sign_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sign up"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_confirm_sign_up"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
+        <Button
+            android:id="@+id/btn_submit"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="submit"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/ti_confirmation_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_weight="2"
+            />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

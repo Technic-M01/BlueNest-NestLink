@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bytebloomlabs.nestlink.databinding.ActivityMainBinding
+import com.bytebloomlabs.nestlink.fragments.AuthDialogFragment
+import com.bytebloomlabs.nestlink.utils.showCustomToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -141,7 +144,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.fabAddDataPoint.setOnClickListener {
             Log.i(TAG, "fab add data point click")
-            changeFragments(NavDestinations.AddDataPoint)
+//            changeFragments(NavDestinations.AddDataPoint)
+            showDialog()
         }
 
     }
@@ -172,12 +176,31 @@ class MainActivity : AppCompatActivity() {
 //                        navController.navigate(action)
                         doOnce = true
                     }
-
                 }
-
             }
+
+            message.observe(owner) { event ->
+                event.getContentIfNotHandled()?.let {
+                    showCustomToast(it.message, it.icon, it.severity)
+                }
+            }
+
         }
     }
+
+    private fun showDialog() {
+        val fragmentManager = supportFragmentManager
+        val newFragment = AuthDialogFragment()
+
+        val transaction = fragmentManager.beginTransaction()
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+
+        transaction
+            .add(android.R.id.content, newFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
 
     companion object {
         private const val TAG = "NestActivity"

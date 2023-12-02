@@ -12,4 +12,15 @@
 
     <color name="chambray">#3A4D87</color>
 
+
+    <color name="cancel_red">#de0a26</color>
+    <color name="cancel_red_2">#ff2c2c</color>
+
+
+    <color name="red_main">@color/cancel_red_2</color>
+    <color name="blue_main">@color/highlight_blue</color>
+    <color name="yellow_main">#ffab00</color>
+    <color name="green_main">#35b054</color>
+
+
 </resources>

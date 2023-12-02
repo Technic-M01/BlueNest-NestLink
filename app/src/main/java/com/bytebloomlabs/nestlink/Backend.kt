@@ -3,6 +3,7 @@ package com.bytebloomlabs.nestlink
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.api.aws.AWSApiPlugin
 import com.amplifyframework.api.graphql.model.ModelMutation
@@ -118,12 +119,14 @@ object Backend {
         Amplify.Auth.signOut { Log.i(TAG, "signOut: signed out") }
     }
 
-    fun signIn(userName: String, userPassword: String) {
+    fun signIn(userName: String, userPassword: String, callingActivity: Activity) {
         Log.i(TAG, "Initiate Signin Sequence")
 
         Amplify.Auth.signIn(userName, userPassword,
             {
                 Log.i(TAG, "Sign in successful for $userName")
+//                Toast.makeText(callingActivity, "Sign in success", Toast.LENGTH_LONG).show()
+
             },
             {
                 Log.w(TAG, "Sign in failed for $userName - ", it)

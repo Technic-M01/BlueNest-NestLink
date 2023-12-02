@@ -58,7 +58,7 @@ class AuthFragment : Fragment() {
 
                 val username = binding.tiUsername.editText?.text.toString()
                 val userpassword = binding.tiPassword.editText?.text.toString()
-                Backend.signIn(username, userpassword)
+                Backend.signIn(username, userpassword, requireActivity())
             }
 
 //            sessionViewModel.setTriggerAuth(true)
@@ -83,6 +83,8 @@ class AuthFragment : Fragment() {
         }
 
     }
+
+
 
     
     companion object {
