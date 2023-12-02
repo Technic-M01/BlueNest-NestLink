@@ -72,10 +72,25 @@ object UserData {
     data class EggDataPoints(val id: String, val telemetry: ByteArray, val telemetryTimestamp: String, val eggType: String) {
         override fun toString(): String = "$id-$telemetryTimestamp-$eggType"
 
-        //ToDo
-//        val data: EggData
-//            get() = EggData.builder()
-//
+        //ToDo: implement proper parsing, or change value type to string
+        val fakeDecodedString: String = telemetry.toString(Charsets.UTF_8)
+
+        val data: EggData
+            get() = EggData.builder()
+                .id(this.id)
+                .telemetry(fakeDecodedString)
+                .telemetryTimestamp(this.telemetryTimestamp)
+                .eggType(this.eggType)
+                .build()
+
+        companion object {
+            fun from(eggData: EggData) : EggDataPoints {
+                val telem: ByteArray = eggData.telemetry.toByteArray(Charsets.UTF_8)
+
+                val result = EggDataPoints(eggData.id, telem, eggData.telemetryTimestamp, eggData.eggType)
+                return result
+            }
+        }
 
     }
 

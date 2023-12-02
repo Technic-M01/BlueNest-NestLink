@@ -5,6 +5,8 @@ import android.content.Context
 import android.util.Log
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.api.aws.AWSApiPlugin
+import com.amplifyframework.api.graphql.model.ModelMutation
+import com.amplifyframework.api.graphql.model.ModelQuery
 import com.amplifyframework.auth.AuthChannelEventName
 import com.amplifyframework.auth.AuthException
 import com.amplifyframework.auth.AuthUserAttributeKey
@@ -15,6 +17,7 @@ import com.amplifyframework.auth.result.AuthSessionResult
 import com.amplifyframework.auth.result.AuthSignInResult
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.core.InitializationStatus
+import com.amplifyframework.datastore.generated.model.EggData
 import com.amplifyframework.hub.HubChannel
 import com.amplifyframework.hub.HubEvent
 
@@ -92,9 +95,21 @@ object Backend {
         return this
     }
 
-
+    // change internal state and query list of data points
     private fun updateUserData(withSignedInStatus : Boolean) {
         UserData.setSignedIn(withSignedInStatus)
+
+        val dataPoints = UserData.eggDataPoints().value
+        val isEmpty = dataPoints?.isEmpty() ?: false
+
+        // query data points when signed in and we do not have data points yet
+        if (withSignedInStatus && isEmpty) {
+            this.queryEggData()
+        } else {
+            UserData.resetEggData()
+        }
+
+
     }
 
     fun signOut() {
@@ -104,20 +119,35 @@ object Backend {
 
     }
 
-    fun signIn(callingActivity: Activity) {
+    fun signIn(userName: String, userPassword: String) {
         Log.i(TAG, "Initiate Signin Sequence")
 
-        Amplify.Auth.signInWithWebUI(
+/*        Amplify.Auth.signInWithWebUI(
             callingActivity,
             { result: AuthSignInResult ->  Log.i(TAG, result.toString()) },
             { error: AuthException -> Log.e(TAG, error.toString()) }
-        )
+        )*/
+
+        Amplify.Auth.signIn(userName, userPassword,
+            {
+                Log.i(TAG, "Sign in successful for $userName")
+            },
+            {
+                Log.w(TAG, "Sign in failed for $userName - ", it)
+            })
+
     }
 
     fun signUp(userName: String, userEmail: String, userPassword: String) {
+        val uname = "maui1"
+        val uemail = "mauriciohvvilla1@gmail.com"
+        val upass = "123456Ab!"
+
+
         val options = AuthSignUpOptions.builder()
             .userAttribute(AuthUserAttributeKey.email(), userEmail)
             .build()
+
 
         Amplify.Auth.signUp(userName, userPassword, options,
             {
@@ -140,6 +170,66 @@ object Backend {
             {
                 Log.e(TAG, "confirmSignUp: failed to confirm sign up.", it)
             })
+    }
+
+
+    fun queryEggData() {
+        Log.i(TAG, "Querying notes")
+
+        Amplify.API.query(
+            ModelQuery.list(EggData::class.java),
+            { response ->
+                Log.i(TAG, "Queried")
+                for (eggData in response.data) {
+                    Log.i(TAG, eggData.toString())
+                    //ToDo: should add all the data points at once instead of one by one (each add triggers a UI refresh)
+                    UserData.addEggDataPoint(UserData.EggDataPoints.from(eggData))
+                }
+            },
+            { error ->
+                Log.e(TAG, "Query failure: ", error)
+            }
+        )
+    }
+
+    fun createEggDataPoint(dataPoint: UserData.EggDataPoints) {
+        Log.i(TAG, "Creating data point")
+
+        Amplify.API.mutate(
+            ModelMutation.create(dataPoint.data),
+            { response ->
+                Log.i(TAG, "Created")
+                if (response.hasErrors()) {
+                    Log.e(TAG, response.errors.first().message)
+                } else {
+                    Log.i(TAG, "Created data point with id: ${response.data.id}")
+                }
+            },
+            { error ->
+                Log.e(TAG, "Create failed: ", error)
+            }
+        )
+    }
+
+    fun deleteDataPoint(dataPoint: UserData.EggDataPoints?) {
+        if (dataPoint == null) return
+
+        Log.i(TAG, "Deleting data point: ${dataPoint.toString()}")
+
+        Amplify.API.mutate(
+            ModelMutation.delete(dataPoint.data),
+            { response ->
+                Log.i(TAG, "deleted")
+                if (response.hasErrors()) {
+                    Log.e(TAG, response.errors.first().message)
+                } else {
+                    Log.i(TAG, "Deleted data point: $response")
+                }
+            },
+            { error ->
+                Log.e(TAG, "Delete failed: ", error)
+            }
+        )
     }
 
 

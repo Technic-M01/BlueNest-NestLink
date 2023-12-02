@@ -48,11 +48,20 @@ class AuthFragment : Fragment() {
     private fun setupAuthButton(userData: UserData) {
 
         binding.btnSignIn.setOnClickListener {
-/*            if (userData.isSignedIn.value!!) {
-                Backend.signIn(requireActivity())
-            }*/
+            Log.i(TAG, "sign in btn click. signed in value: ${userData.isSignedIn.value}")
 
-            sessionViewModel.setTriggerAuth(true)
+            if (userData.isSignedIn.value!!) {
+                Backend.signOut()
+
+            } else {
+//                Backend.signIn(requireActivity())
+
+                val username = binding.tiUsername.editText?.text.toString()
+                val userpassword = binding.tiPassword.editText?.text.toString()
+                Backend.signIn(username, userpassword)
+            }
+
+//            sessionViewModel.setTriggerAuth(true)
 
         }
 
@@ -60,6 +69,8 @@ class AuthFragment : Fragment() {
             val username = binding.tiUsername.editText?.text.toString()
             val useremail = binding.tiEmail.editText?.text.toString()
             val userpassword = binding.tiPassword.editText?.text.toString()
+
+            Log.i(TAG, "sign up\n\tuser name: <$username>\n\temail: <$useremail>\n\tpassword: <$userpassword>")
 
             Backend.signUp(username, useremail, userpassword)
         }

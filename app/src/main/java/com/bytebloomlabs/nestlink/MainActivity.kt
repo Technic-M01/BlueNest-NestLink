@@ -3,6 +3,7 @@ package com.bytebloomlabs.nestlink
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -19,6 +20,11 @@ class MainActivity : AppCompatActivity() {
     private val sessionViewModel: SessionViewModel by viewModels()
 
     private lateinit var navController: NavController
+
+    private var currentFragLabel: String? = null
+
+    private var previouslySignedIn = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -32,28 +38,42 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { controller, destination, _ ->
             Log.i("FragController", "destination: ${destination.label}")
 
+            currentFragLabel = destination.label.toString()
+
             if (destination.label == getString(R.string.auth_frag_label)) {
-                val authFrag = supportFragmentManager.findFragmentById(R.id.authFragment)
 
 
+            }
 
+            when (destination.label) {
+                getString(R.string.auth_frag_label) -> {
+                    val authFrag = supportFragmentManager.findFragmentById(R.id.authFragment)
 //                val t = authFrag.getTest()
 
 
-                Log.i("FragController", "in auth frag | frag: $authFrag")
+                    Log.i("FragController", "in auth frag | frag: $authFrag")
+
+                }
+
+                getString(R.string.data_list_frag_label) -> {
+//                    binding.fabAddDataPoint.visibility = View.VISIBLE
+                }
 
             }
+
+            if (destination.label != getString(R.string.data_list_frag_label)) {
+                binding.fabAddDataPoint.visibility = View.INVISIBLE
+            } else {
+                binding.fabAddDataPoint.visibility = View.VISIBLE
+
+            }
+
 
             setupAuthButton(UserData)
 
             observeViewModel()
 
         }
-//        val frag = sup
-/*        //prepare list view and recyclerview (cells)
-        setupRecyclerView(binding.itemList)
-
-        setupAuthButton(UserData)
 
         UserData.isSignedIn.observe(this, Observer<Boolean> {isSignedUp ->
             // update UI
@@ -61,11 +81,23 @@ class MainActivity : AppCompatActivity() {
 
             if (isSignedUp) {
                 binding.fabAuth.setImageResource(R.drawable.ic_lock_open)
+
+                changeFragments(NavDestinations.DataList)
+
+                if (!previouslySignedIn) {
+                    previouslySignedIn = true
+                }
+
             } else {
                 binding.fabAuth.setImageResource(R.drawable.ic_lock)
-            }
 
-        })*/
+                if (previouslySignedIn) {
+                    if (currentFragLabel != null && currentFragLabel != getString(R.string.auth_frag_label)) {
+                        navController.popBackStack()
+                    }
+                }
+            }
+        })
 
     }
 
@@ -92,16 +124,36 @@ class MainActivity : AppCompatActivity() {
 
             if (userData.isSignedIn.value!!) {
                 authButton.setImageResource(R.drawable.ic_lock_open)
-//                Backend.signOut()
+                Backend.signOut()
             } else {
                 authButton.setImageResource(R.drawable.ic_lock_open)
 //                Backend.signIn(this)
             }
-            
         }
+
+
+        binding.fabAddDataPoint.setOnClickListener {
+            Log.i(TAG, "fab add data point click")
+            changeFragments(NavDestinations.AddDataPoint)
+        }
+
     }
 
     private var doOnce = false
+
+    //TODO implement functionality for other fragments
+    private fun changeFragments(destination: NavDestinations) {
+
+        val action = when (destination) {
+            NavDestinations.DataList -> AuthFragmentDirections.actionAuthFragmentToDataListFragment3()
+            NavDestinations.AddDataPoint -> DataListFragmentDirections.actionDataListFragmentToAddDataPointFragment()
+        }
+
+//        val action = AuthFragmentDirections.actionAuthFragmentToDataListFragment3()
+
+        navController.navigate(action)
+
+    }
 
     private fun observeViewModel() {
         val owner = this@MainActivity
@@ -114,7 +166,7 @@ class MainActivity : AppCompatActivity() {
                     val action = AuthFragmentDirections.actionAuthFragmentToDataListFragment3()
 
                     if (!doOnce) {
-                        navController.navigate(action)
+//                        navController.navigate(action)
                         doOnce = true
                     }
 
@@ -125,7 +177,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "MainActivity"
+        private const val TAG = "NestActivity"
+
+        enum class NavDestinations {
+            DataList,
+            AddDataPoint
+        }
     }
 
 }

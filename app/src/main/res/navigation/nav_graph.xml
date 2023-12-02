@@ -18,5 +18,13 @@
         android:id="@+id/dataListFragment"
         android:name="com.bytebloomlabs.nestlink.DataListFragment"
         android:label="@string/data_list_frag_label"
-        tools:layout="@layout/fragment_data_list" />
+        tools:layout="@layout/fragment_data_list" >
+        <action
+            android:id="@+id/action_dataListFragment_to_addDataPointFragment"
+            app:destination="@id/addDataPointFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDataPointFragment"
+        android:name="com.bytebloomlabs.nestlink.AddDataPointFragment"
+        android:label="AddDataPointFragment" />
 </navigation>

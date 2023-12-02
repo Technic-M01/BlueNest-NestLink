@@ -40,6 +40,7 @@ class DataListFragment : Fragment() {
 
         setupAuthButton(UserData)
 
+/*
         UserData.isSignedIn.observe(viewLifecycleOwner, Observer<Boolean> {isSignedUp ->
             // update UI
             Log.i(TAG, "onCreate: isSignedIn changed. isSignedUp: $isSignedUp")
@@ -51,6 +52,7 @@ class DataListFragment : Fragment() {
             }
 
         })
+*/
 
 
     }
@@ -65,7 +67,7 @@ class DataListFragment : Fragment() {
     //rv is the list of cells
     private fun setupRecyclerView(recyclerView: RecyclerView) {
         // update individual cells when the EggData contents are modified
-        UserData.eggDataPoints().observe(this, Observer<MutableList<UserData.EggDataPoints>> { dataPoints ->
+        UserData.eggDataPoints().observe(viewLifecycleOwner, Observer<MutableList<UserData.EggDataPoints>> { dataPoints ->
             Log.d(TAG, "setupRecyclerView: EggData observer received ${dataPoints.size} data points")
 
             //create a recycler view adapter that manages the individual cells
@@ -82,7 +84,7 @@ class DataListFragment : Fragment() {
                 Backend.signOut()
             } else {
                 authButton.setImageResource(R.drawable.ic_lock_open)
-                Backend.signIn(requireActivity())
+//                Backend.signIn(requireActivity())
             }
         }
     }
