@@ -10,12 +10,12 @@ import androidx.fragment.app.activityViewModels
 import com.bytebloomlabs.nestlink.models.Backend
 import com.bytebloomlabs.nestlink.models.SessionViewModel
 import com.bytebloomlabs.nestlink.models.UserData
-import com.bytebloomlabs.nestlink.databinding.FragmentAuthBinding
+import com.bytebloomlabs.nestlink.databinding.FragmentLoginBinding
 import com.bytebloomlabs.nestlink.utils.showSignupDialog
 
-class AuthFragment : Fragment() {
+class LoginFragment : Fragment() {
 
-    private var _binding: FragmentAuthBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     val binding get() = _binding!!
 
     private val sessionViewModel: SessionViewModel by activityViewModels()
@@ -30,7 +30,7 @@ class AuthFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentAuthBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -67,9 +67,6 @@ class AuthFragment : Fragment() {
         }
 
     }
-
-
-
     
     companion object {
         const val TAG = "AuthFragment"

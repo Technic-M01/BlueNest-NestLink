@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.bytebloomlabs.nestlink.models.Backend
 import com.bytebloomlabs.nestlink.databinding.FragmentAuthDialogBinding
 
-class AuthDialogFragment : DialogFragment() {
+class SignupDialogFragment : DialogFragment() {
 
     private var _binding: FragmentAuthDialogBinding? = null
     val binding get() = _binding!!
@@ -43,7 +43,7 @@ class AuthDialogFragment : DialogFragment() {
 
         with (binding) {
             btnCloseSignup.setOnClickListener {
-                this@AuthDialogFragment.dismiss()
+                this@SignupDialogFragment.dismiss()
             }
 
             btnSubmit.setOnClickListener {

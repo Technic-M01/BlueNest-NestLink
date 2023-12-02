@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.bytebloomlabs.nestlink.MainActivity
 import com.bytebloomlabs.nestlink.R
-import com.bytebloomlabs.nestlink.fragments.AuthDialogFragment
+import com.bytebloomlabs.nestlink.fragments.SignupDialogFragment
 
 internal fun Activity.showSignupDialog() {
     val fragmentManager = (this as MainActivity).supportFragmentManager
-    val newFragment = AuthDialogFragment()
+    val newFragment = SignupDialogFragment()
 
     val transaction = fragmentManager.beginTransaction()
     transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

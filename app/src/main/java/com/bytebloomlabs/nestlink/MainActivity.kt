@@ -12,9 +12,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bytebloomlabs.nestlink.adapters.EggDataRecyclerViewAdapter
 import com.bytebloomlabs.nestlink.databinding.ActivityMainBinding
-import com.bytebloomlabs.nestlink.fragments.AuthDialogFragment
-import com.bytebloomlabs.nestlink.fragments.AuthFragmentDirections
+import com.bytebloomlabs.nestlink.fragments.SignupDialogFragment
 import com.bytebloomlabs.nestlink.fragments.DataListFragmentDirections
+import com.bytebloomlabs.nestlink.fragments.LoginFragmentDirections
 import com.bytebloomlabs.nestlink.models.Backend
 import com.bytebloomlabs.nestlink.models.SessionViewModel
 import com.bytebloomlabs.nestlink.models.UserData
@@ -49,14 +49,14 @@ class MainActivity : AppCompatActivity() {
 
             currentFragLabel = destination.label.toString()
 
-            if (destination.label == getString(R.string.auth_frag_label)) {
+            if (destination.label == getString(R.string.login_frag_label)) {
 
 
             }
 
             when (destination.label) {
-                getString(R.string.auth_frag_label) -> {
-                    val authFrag = supportFragmentManager.findFragmentById(R.id.authFragment)
+                getString(R.string.login_frag_label) -> {
+                    val authFrag = supportFragmentManager.findFragmentById(R.id.loginFragment)
 //                val t = authFrag.getTest()
 
 
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                 binding.fabAuth.setImageResource(R.drawable.ic_lock)
 
                 if (previouslySignedIn) {
-                    if (currentFragLabel != null && currentFragLabel != getString(R.string.auth_frag_label)) {
+                    if (currentFragLabel != null && currentFragLabel != getString(R.string.login_frag_label)) {
                         navController.popBackStack()
                     }
                 }
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
     private fun changeFragments(destination: NavDestinations) {
 
         val action = when (destination) {
-            NavDestinations.DataList -> AuthFragmentDirections.actionAuthFragmentToDataListFragment3()
+            NavDestinations.DataList -> LoginFragmentDirections.actionLoginFragmentToDataListFragment()
             NavDestinations.AddDataPoint -> DataListFragmentDirections.actionDataListFragmentToAddDataPointFragment()
         }
 
@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showDialog() {
         val fragmentManager = supportFragmentManager
-        val newFragment = AuthDialogFragment()
+        val newFragment = SignupDialogFragment()
 
         val transaction = fragmentManager.beginTransaction()
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

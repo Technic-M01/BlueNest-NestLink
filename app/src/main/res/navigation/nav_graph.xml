@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/authFragment"
-        android:name="com.bytebloomlabs.nestlink.fragments.AuthFragment"
-        android:label="@string/auth_frag_label"
-        tools:layout="@layout/fragment_auth">
+        android:id="@+id/loginFragment"
+        android:name="com.bytebloomlabs.nestlink.fragments.LoginFragment"
+        android:label="@string/login_frag_label"
+        tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_authFragment_to_dataListFragment3"
+            android:id="@+id/action_loginFragment_to_dataListFragment"
             app:destination="@id/dataListFragment" />
     </fragment>
     <fragment
