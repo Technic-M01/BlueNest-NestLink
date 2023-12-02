@@ -4,5 +4,11 @@
         <item name="android:textColor">@color/highlight_blue</item>
     </style>
 
+    <style name="TextAppearance.Label" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/highlight_blue_2</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>
