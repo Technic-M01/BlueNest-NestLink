@@ -60,25 +60,14 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
-                getString(R.string.data_list_frag_label) -> {
-//                    binding.fabAddDataPoint.visibility = View.VISIBLE
-                }
-
             }
 
-            if (destination.label == getString(R.string.add_data_point_frag_label)) {
+            // commented out since fab is unused
+/*            if (destination.label == getString(R.string.add_data_point_frag_label)) {
                 binding.fabAuth.visibility = View.INVISIBLE
             } else {
                 binding.fabAuth.visibility = View.VISIBLE
-            }
-
-
-            if (destination.label != getString(R.string.data_list_frag_label)) {
-                binding.fabAddDataPoint.visibility = View.INVISIBLE
-            } else {
-                binding.fabAddDataPoint.visibility = View.VISIBLE
-
-            }
+            }*/
 
 
             setupAuthButton(UserData)
@@ -133,11 +122,6 @@ class MainActivity : AppCompatActivity() {
                 authButton.setImageResource(R.drawable.ic_lock_open)
 //                Backend.signIn(this)
             }
-        }
-
-        binding.fabAddDataPoint.setOnClickListener {
-            Log.i(TAG, "fab add data point click")
-//            changeFragments(NavDestinations.AddDataPoint)
         }
 
     }
