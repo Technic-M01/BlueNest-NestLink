@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.RecyclerView
-import com.bytebloomlabs.nestlink.adapters.EggDataRecyclerViewAdapter
 import com.bytebloomlabs.nestlink.databinding.ActivityMainBinding
-import com.bytebloomlabs.nestlink.fragments.SignupDialogFragment
 import com.bytebloomlabs.nestlink.fragments.DataListFragmentDirections
 import com.bytebloomlabs.nestlink.fragments.LoginFragmentDirections
 import com.bytebloomlabs.nestlink.models.Backend
@@ -87,6 +83,8 @@ class MainActivity : AppCompatActivity() {
 
             setupAuthButton(UserData)
 
+            setupAppBar()
+
             observeViewModel()
 
         }
@@ -122,21 +120,9 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    //rv is the list of cells
-    private fun setupRecyclerView(recyclerView: RecyclerView) {
-        // update individual cells when the EggData contents are modified
-        UserData.eggDataPoints().observe(this, Observer<MutableList<UserData.EggDataPoints>> { dataPoints ->
-            Log.d(TAG, "setupRecyclerView: EggData observer received ${dataPoints.size} data points")
-
-            //create a recycler view adapter that manages the individual cells
-            recyclerView.adapter = EggDataRecyclerViewAdapter(dataPoints)
-        })
-    }
-
     private fun setupAuthButton(userData: UserData) {
         binding.fabAuth.setOnClickListener {
             val authButton = it as FloatingActionButton
-
 
             if (userData.isSignedIn.value!!) {
                 authButton.setImageResource(R.drawable.ic_lock_open)
@@ -147,13 +133,32 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         binding.fabAddDataPoint.setOnClickListener {
             Log.i(TAG, "fab add data point click")
-//            changeFragments(NavDestinations.AddDataPoint)
-            showDialog()
+            changeFragments(NavDestinations.AddDataPoint)
         }
 
+    }
+
+    private fun setupAppBar() {
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            var mi = ""
+            when (menuItem.itemId) {
+                R.id.mi_settings -> {
+                    mi = "m1"
+                    Log.i(TAG, "app bar menu item click: $mi")
+                    true
+                }
+
+                R.id.mi_filter -> {
+                    mi = "m2"
+                    Log.i(TAG, "app bar menu item click: $mi")
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 
     private fun changeFragments(destination: NavDestinations) {
@@ -179,20 +184,6 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
-    private fun showDialog() {
-        val fragmentManager = supportFragmentManager
-        val newFragment = SignupDialogFragment()
-
-        val transaction = fragmentManager.beginTransaction()
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-
-        transaction
-            .add(android.R.id.content, newFragment)
-            .addToBackStack(null)
-            .commit()
-    }
-
 
     companion object {
         private const val TAG = "NestActivity"

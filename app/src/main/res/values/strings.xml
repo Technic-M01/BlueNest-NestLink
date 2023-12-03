@@ -37,4 +37,8 @@
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
 
+
+    <!-- Menu item titles -->
+    <string name="mi_settings">settings</string>
+    <string name="mi_filter">filter</string>
 </resources>
