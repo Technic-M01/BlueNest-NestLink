@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.fabAddDataPoint.setOnClickListener {
             Log.i(TAG, "fab add data point click")
-            changeFragments(NavDestinations.AddDataPoint)
+//            changeFragments(NavDestinations.AddDataPoint)
         }
 
     }

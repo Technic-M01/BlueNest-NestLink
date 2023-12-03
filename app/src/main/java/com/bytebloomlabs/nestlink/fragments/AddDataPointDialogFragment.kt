@@ -1,33 +1,29 @@
 package com.bytebloomlabs.nestlink.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.bytebloomlabs.nestlink.models.Backend
 import com.bytebloomlabs.nestlink.models.UserData
-import com.bytebloomlabs.nestlink.databinding.FragmentAddDataPointBinding
+import com.bytebloomlabs.nestlink.databinding.FragmentAddDataPointDialogBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.UUID
 
-class AddDataPointFragment : Fragment() {
+class AddDataPointDialogFragment : DialogFragment() {
 
-    private var _binding: FragmentAddDataPointBinding? = null
+    private var _binding: FragmentAddDataPointDialogBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentAddDataPointBinding.inflate(inflater, container, false)
+        _binding = FragmentAddDataPointDialogBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -38,7 +34,8 @@ class AddDataPointFragment : Fragment() {
         with (binding) {
 
             btnCancel.setOnClickListener {
-                findNavController().popBackStack()
+//                findNavController().popBackStack()
+                this@AddDataPointDialogFragment.dismiss()
             }
 
             btnAddNote.setOnClickListener {
@@ -62,7 +59,8 @@ class AddDataPointFragment : Fragment() {
                 // add it to UserData, this will trigger a UI refresh
                 UserData.addEggDataPoint(newDataPoint)
 
-                findNavController().popBackStack()
+                this@AddDataPointDialogFragment.dismiss()
+//                findNavController().popBackStack()
             }
         }
 

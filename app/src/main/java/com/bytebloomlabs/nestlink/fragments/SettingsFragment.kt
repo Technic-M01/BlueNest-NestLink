@@ -9,6 +9,8 @@ import com.bytebloomlabs.nestlink.R
 import com.bytebloomlabs.nestlink.databinding.FragmentDataListBinding
 import com.bytebloomlabs.nestlink.databinding.FragmentSettingsBinding
 import com.bytebloomlabs.nestlink.models.Backend
+import com.bytebloomlabs.nestlink.utils.changeFragments
+import com.bytebloomlabs.nestlink.utils.showAddDataPointDialog
 
 class SettingsFragment : Fragment() {
 
@@ -34,6 +36,10 @@ class SettingsFragment : Fragment() {
 
         binding.btnSignOut.setOnClickListener {
             Backend.signOut()
+        }
+
+        binding.btnAddDataPoint.setOnClickListener {
+            requireActivity().showAddDataPointDialog()
         }
     }
 

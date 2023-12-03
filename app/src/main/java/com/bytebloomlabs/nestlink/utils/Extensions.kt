@@ -12,13 +12,26 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.NavHostFragment
 import com.bytebloomlabs.nestlink.MainActivity
 import com.bytebloomlabs.nestlink.R
-import com.bytebloomlabs.nestlink.fragments.DataListFragmentDirections
+import com.bytebloomlabs.nestlink.fragments.AddDataPointDialogFragment
 import com.bytebloomlabs.nestlink.fragments.LoginFragmentDirections
 import com.bytebloomlabs.nestlink.fragments.SignupDialogFragment
 
 internal fun Activity.showSignupDialog() {
     val fragmentManager = (this as MainActivity).supportFragmentManager
     val newFragment = SignupDialogFragment()
+
+    val transaction = fragmentManager.beginTransaction()
+    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+
+    transaction
+        .add(android.R.id.content, newFragment)
+        .addToBackStack(null)
+        .commit()
+}
+
+internal fun Activity.showAddDataPointDialog() {
+    val fragmentManager = (this as MainActivity).supportFragmentManager
+    val newFragment = AddDataPointDialogFragment()
 
     val transaction = fragmentManager.beginTransaction()
     transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -36,7 +49,6 @@ internal fun Activity.changeFragments(destination: NavDestinations) {
 
     val action = when (destination) {
         NavDestinations.DataList -> LoginFragmentDirections.actionLoginFragmentToDataListFragment()
-        NavDestinations.AddDataPoint -> DataListFragmentDirections.actionDataListFragmentToAddDataPointFragment()
         NavDestinations.Home -> LoginFragmentDirections.actionLoginFragmentToHomeFragment()
     }
 
