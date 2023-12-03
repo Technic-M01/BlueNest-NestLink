@@ -120,6 +120,7 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
+
     private fun setupAuthButton(userData: UserData) {
         binding.fabAuth.setOnClickListener {
             val authButton = it as FloatingActionButton
