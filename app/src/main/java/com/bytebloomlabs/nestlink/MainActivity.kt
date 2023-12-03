@@ -96,7 +96,8 @@ class MainActivity : AppCompatActivity() {
             if (isSignedUp) {
                 binding.fabAuth.setImageResource(R.drawable.ic_lock_open)
 
-                changeFragments(NavDestinations.DataList)
+//                changeFragments(NavDestinations.DataList)
+                changeFragments(NavDestinations.Home)
 
                 if (!previouslySignedIn) {
                     previouslySignedIn = true
@@ -167,6 +168,7 @@ class MainActivity : AppCompatActivity() {
         val action = when (destination) {
             NavDestinations.DataList -> LoginFragmentDirections.actionLoginFragmentToDataListFragment()
             NavDestinations.AddDataPoint -> DataListFragmentDirections.actionDataListFragmentToAddDataPointFragment()
+            NavDestinations.Home -> LoginFragmentDirections.actionLoginFragmentToHomeFragment()
         }
 
         navController.navigate(action)
@@ -191,7 +193,8 @@ class MainActivity : AppCompatActivity() {
 
         enum class NavDestinations {
             DataList,
-            AddDataPoint
+            AddDataPoint,
+            Home
         }
     }
 

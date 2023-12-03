@@ -37,8 +37,13 @@
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
 
-
     <!-- Menu item titles -->
     <string name="mi_settings">settings</string>
     <string name="mi_filter">filter</string>
+
+    <!-- Home Fragment Tab Labels -->
+    <string name="tab_data_points">Data Points</string>
+    <string name="tab_settings">Settings</string>
+
+
 </resources>

@@ -52,20 +52,20 @@ class EggDataRecyclerViewAdapter(
         with (holder) {
             val cv = cardView
 
-            holder.itemView.setOnClickListener {
+            itemView.setOnClickListener {
                 Log.i("Backend", ">> on click for: ${item?.eggType} - ${item?.telemetryTimestamp} ")
 
-                if (holder.extraDetailsGp.visibility == View.VISIBLE) {
+                if (extraDetailsGp.visibility == View.VISIBLE) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                         TransitionManager.beginDelayedTransition(cv, AutoTransition())
                     }
-                    holder.extraDetailsGp.visibility = View.GONE
+                    extraDetailsGp.visibility = View.GONE
                     expandArrowIv.setImageResource(R.drawable.ic_arrow_down)
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                         TransitionManager.beginDelayedTransition(cv, AutoTransition())
                     }
-                    holder.extraDetailsGp.visibility = View.VISIBLE
+                    extraDetailsGp.visibility = View.VISIBLE
                     expandArrowIv.setImageResource(R.drawable.ic_arrow_up)
                 }
             }
