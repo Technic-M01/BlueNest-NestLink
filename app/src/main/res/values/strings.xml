@@ -36,6 +36,8 @@
     <string name="sign_up">Sign Up</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="add_data_point">Add Data Point</string>
 
     <!-- Menu item titles -->
     <string name="mi_settings">settings</string>

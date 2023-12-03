@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.bytebloomlabs.nestlink.R
 import com.bytebloomlabs.nestlink.databinding.FragmentDataListBinding
 import com.bytebloomlabs.nestlink.databinding.FragmentSettingsBinding
+import com.bytebloomlabs.nestlink.models.Backend
 
 class SettingsFragment : Fragment() {
 
@@ -26,6 +27,14 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnSignOut.setOnClickListener {
+            Backend.signOut()
+        }
     }
 
     companion object {

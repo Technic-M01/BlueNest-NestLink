@@ -9,11 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.bytebloomlabs.nestlink.databinding.ActivityMainBinding
-import com.bytebloomlabs.nestlink.fragments.DataListFragmentDirections
-import com.bytebloomlabs.nestlink.fragments.LoginFragmentDirections
 import com.bytebloomlabs.nestlink.models.Backend
 import com.bytebloomlabs.nestlink.models.SessionViewModel
 import com.bytebloomlabs.nestlink.models.UserData
+import com.bytebloomlabs.nestlink.utils.NavDestinations
+import com.bytebloomlabs.nestlink.utils.changeFragments
 import com.bytebloomlabs.nestlink.utils.showCustomToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -163,17 +163,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun changeFragments(destination: NavDestinations) {
-
-        val action = when (destination) {
-            NavDestinations.DataList -> LoginFragmentDirections.actionLoginFragmentToDataListFragment()
-            NavDestinations.AddDataPoint -> DataListFragmentDirections.actionDataListFragmentToAddDataPointFragment()
-            NavDestinations.Home -> LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-        }
-
-        navController.navigate(action)
-    }
-
     private fun observeViewModel() {
         val owner = this@MainActivity
 
@@ -191,11 +180,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "NestActivity"
 
-        enum class NavDestinations {
-            DataList,
-            AddDataPoint,
-            Home
-        }
+
     }
 
 }

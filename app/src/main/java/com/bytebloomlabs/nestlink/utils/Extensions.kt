@@ -9,8 +9,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.fragment.NavHostFragment
 import com.bytebloomlabs.nestlink.MainActivity
 import com.bytebloomlabs.nestlink.R
+import com.bytebloomlabs.nestlink.fragments.DataListFragmentDirections
+import com.bytebloomlabs.nestlink.fragments.LoginFragmentDirections
 import com.bytebloomlabs.nestlink.fragments.SignupDialogFragment
 
 internal fun Activity.showSignupDialog() {
@@ -26,6 +29,22 @@ internal fun Activity.showSignupDialog() {
         .commit()
 }
 
+/**
+ * Navigates to fragments in the nav host fragment (not the view pager)
+ * */
+internal fun Activity.changeFragments(destination: NavDestinations) {
+
+    val action = when (destination) {
+        NavDestinations.DataList -> LoginFragmentDirections.actionLoginFragmentToDataListFragment()
+        NavDestinations.AddDataPoint -> DataListFragmentDirections.actionDataListFragmentToAddDataPointFragment()
+        NavDestinations.Home -> LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+    }
+
+    val navHostFragment = (this as MainActivity).supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+    val navController = navHostFragment.navController
+
+    navController.navigate(action)
+}
 
 
 internal fun Activity.showCustomToast(
